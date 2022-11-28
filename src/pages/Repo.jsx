@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom'
 import Spinner from '../Components/Layout/Spinner';
 import GitHubContext from '../Context/GitHub/GitHubContext'; 
 import { Link } from 'react-router-dom';
-import {BsArrowUpRightCircleFill} from 'react-icons/bs';
+import {BsArrowUpRightCircleFill, BsStarFill, BsEyeFill, BsExclamationTriangleFill} from 'react-icons/bs';
 import {fetchRepo} from '../Context/GitHub/GitHubActions';
+import {BsFileBreakFill} from 'react-icons/bs'
+
 
 function Repo() {
 
@@ -25,6 +27,7 @@ function Repo() {
     name,
     owner,
     forks,
+    open_issues_count,
     stargazers_count,
     watchers_count,
     html_url,
@@ -46,16 +49,32 @@ function Repo() {
         <div>
         <div className="w-full rounded-lg shadow-md bg-neutral stats text-neutral-content mt-4">
                 <div className="stat">
-                  <div className="stat-title text-md">Stars</div>
-                  <div className="text-lg stat-value">{stargazers_count}</div>
-                </div>
-                <div className="stat">
+                  <div className="stat-figure text-secondary">
+                    <BsEyeFill className='text-3xl md:text-5xl'></BsEyeFill>
+                  </div>
                   <div className="stat-title text-md">Watchers</div>
-                  <div className="text-lg stat-value">{watchers_count}</div>
+                  <div className="stat-value pr-5 text-3xl md:text-4xl">{watchers_count}</div>
                 </div>
                 <div className="stat">
+                  <div className="stat-figure text-secondary">
+                    <BsStarFill className='text-3xl md:text-5xl'></BsStarFill>
+                  </div>
+                  <div className="stat-title text-md">Stars</div>
+                  <div className="stat-value pr-5 text-3xl md:text-4xl">{stargazers_count}</div>
+                </div>
+                <div className="stat">
+                  <div className="stat-figure text-secondary">
+                    <BsExclamationTriangleFill className='text-3xl md:text-5xl'></BsExclamationTriangleFill>
+                  </div>
+                  <div className="stat-title text-md">Issues</div>
+                  <div className="stat-value pr-5 text-3xl md:text-4xl">{open_issues_count}</div>
+                </div>
+                <div className="stat">
+                  <div className="stat-figure text-secondary">
+                    <BsFileBreakFill className='text-3xl md:text-5xl'></BsFileBreakFill>
+                  </div>
                   <div className="stat-title text-md">Forks</div>
-                  <div className="text-lg stat-value">{forks}</div>
+                  <div className="stat-value pr-5 text-3xl md:text-4xl">{forks}</div>
                 </div>
             </div>
         </div>

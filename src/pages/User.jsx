@@ -1,12 +1,12 @@
-import {FaCode, FaCodepen, FaStore, FaUserFriends, FaUsers} from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 import Spinner from '../Components/Layout/Spinner';
 import React, {useEffect, useContext} from 'react'
 import { useParams } from 'react-router-dom';
 import GitHubContext from '../Context/GitHub/GitHubContext'
 import RepoList from '../Components/Repos/RepoList';
-import {BsArrowUpRightCircleFill} from 'react-icons/bs'
-import {getUser} from '../Context/GitHub/GitHubActions'
+import {BsArrowUpRightCircleFill, BsPeopleFill, BsPersonFill, BsFileCodeFill, BsFileTextFill} from 'react-icons/bs'
+import {getUser} from '../Context/GitHub/GitHubActions';
+
 
 
 function User() {
@@ -55,7 +55,7 @@ function User() {
           <div className="custom-card-image mb-6 md:mb-0">
             <div className="shadow-xl card rounded-lg image-full mask mask-circle">
               <figure>
-                <img src={avatar_url} className="mask mask-circle w-full"></img>
+                <img alt="avatar" src={avatar_url} className="mask mask-circle w-full"></img>
               </figure>
             </div>
           </div>
@@ -105,7 +105,7 @@ function User() {
         <div className="w-full py-5 mb-6 rounded-lg shadow-md bg-neutral stats text-neutral-content">
           <div className="stat">
             <div className="stat-figure text-secondary">
-              <FaUsers className='text-3xl md:text-5xl'></FaUsers>
+              <BsPeopleFill className='text-3xl md:text-5xl'></BsPeopleFill>
             </div>
             <div className="stat-title pr-5">
               Followers
@@ -114,7 +114,7 @@ function User() {
           </div>
           <div className="stat">
             <div className="stat-figure text-secondary">
-              <FaUserFriends className='text-3xl md:text-5xl'></FaUserFriends>
+              <BsPersonFill className='text-3xl md:text-5xl'></BsPersonFill>
             </div>
             <div className="stat-title pr-5">
               Following
@@ -123,7 +123,7 @@ function User() {
           </div>
           <div className="stat">
             <div className="stat-figure text-secondary">
-              <FaCode className='text-3xl md:text-5xl'></FaCode>
+              <BsFileCodeFill className='text-3xl md:text-5xl'></BsFileCodeFill>
             </div>
             <div className="stat-title pr-5">
               Public Repositories
@@ -132,7 +132,7 @@ function User() {
           </div>
           <div className="stat">
             <div className="stat-figure text-secondary">
-              <FaStore className='text-3xl md:text-5xl'></FaStore>
+              <BsFileTextFill className='text-3xl md:text-5xl'></BsFileTextFill>
             </div>
             <div className="stat-title pr-5">
               Gists
