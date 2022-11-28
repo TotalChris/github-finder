@@ -3,28 +3,32 @@ import { useParams } from 'react-router-dom'
 import Spinner from '../Components/Layout/Spinner';
 import GitHubContext from '../Context/GitHub/GitHubContext'; 
 import { Link } from 'react-router-dom';
-import {BsArrowUpRightCircleFill} from 'react-icons/bs'
+import {BsArrowUpRightCircleFill} from 'react-icons/bs';
+import {fetchRepo} from '../Context/GitHub/GitHubActions';
 
 function Repo() {
 
   const params = useParams();
 
-  const {fetchRepo, currentRepo, loading} = useContext(GitHubContext);
+  const {currentRepo, loading, dispatch} = useContext(GitHubContext);
 
   useEffect(() => {
-    fetchRepo(params.login, params.rname);
-  }, []);
+    dispatch({type: 'SET_LOADING'});
+    const getData = async () => {
+      const repo = await fetchRepo(params.login, params.rname);
+      dispatch({type: 'GET_REPO', payload: repo});
+    }
+    getData();
+  }, [dispatch, params.login, params.rname]);
 
   const {
     name,
-    full_name,
     owner,
     forks,
     stargazers_count,
     watchers_count,
     html_url,
-    description,
-    git_url
+    description
   } = currentRepo;
 
   console.log(owner, loading);

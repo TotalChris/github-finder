@@ -9,8 +9,8 @@ function UserItem({user: {login, avatar_url}}) {
         <div className='flex-row items-center space-x-4 card-body'>
             <div>
                 <div className='avatar'>
-                    <div className="mask mask-parallelogram-3 shadow w-14 h-14">
-                        <img src={avatar_url} alt="profile" className='mask mask-parallelogram-3'/>
+                    <div className="mask mask-circle shadow w-14 h-14">
+                        <img src={avatar_url} alt="profile" className='mask mask-circle'/>
                     </div>
                 </div>
             </div>

@@ -6,18 +6,23 @@ import { useParams } from 'react-router-dom';
 import GitHubContext from '../Context/GitHub/GitHubContext'
 import RepoList from '../Components/Repos/RepoList';
 import {BsArrowUpRightCircleFill} from 'react-icons/bs'
+import {getUser} from '../Context/GitHub/GitHubActions'
 
 
 function User() {
 
-    const { fetchUserProfile, currentUser, loading, fetchUserRepos, repos } = useContext(GitHubContext);
+    const { currentUser, loading, repos, dispatch } = useContext(GitHubContext);
     
     const params = useParams()
     
     useEffect(() => {
-        fetchUserProfile(params.login);
-        fetchUserRepos(params.login);
-    }, [])
+      dispatch({type: 'SET_LOADING'})
+        const getUserData = async () => {
+          const userData = await getUser(params.login);
+          dispatch({type: 'GET_USERDATA', payload: userData})
+        }
+        getUserData();
+    }, [dispatch, params.login])
 
     const {
       name,
@@ -48,9 +53,9 @@ function User() {
         </div>
         <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 mb-8 md:gap-8">
           <div className="custom-card-image mb-6 md:mb-0">
-            <div className="shadow-xl card rounded-lg image-full mask mask-parallelogram-3">
+            <div className="shadow-xl card rounded-lg image-full mask mask-circle">
               <figure>
-                <img src={avatar_url} className="mask mask-parallelogram-3 w-full"></img>
+                <img src={avatar_url} className="mask mask-circle w-full"></img>
               </figure>
             </div>
           </div>
